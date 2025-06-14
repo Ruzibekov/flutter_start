@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_start/presentation/screens/otp_verification/OTPVerificationScreen.dart';
 import 'package:flutter_start/presentation/screens/sign_up/SignUpScreen.dart';
 
 import 'presentation/screens/no_internet/NoInternetScreen.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "My second app",
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: SignUpScreen(),
+      home: OTPVerificationScreen(),
     );
   }
 }

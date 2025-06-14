@@ -114,7 +114,7 @@ class SignUpScreen extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 152),
+              Expanded(flex: 1, child: Container()),
 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 65),
