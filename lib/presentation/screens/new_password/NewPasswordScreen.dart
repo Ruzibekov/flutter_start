@@ -58,6 +58,7 @@ class NewPasswordScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.primary),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   prefixIcon: Padding(
