@@ -4,9 +4,14 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../core/theme/AppColors.dart';
 
-class OTPVerificationScreen extends StatelessWidget {
+class OTPVerificationScreen extends StatefulWidget {
   const OTPVerificationScreen({super.key});
 
+  @override
+  OTPVerificationState createState() => OTPVerificationState();
+}
+
+class OTPVerificationState extends State<OTPVerificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

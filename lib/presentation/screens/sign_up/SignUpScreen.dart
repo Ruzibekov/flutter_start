@@ -4,7 +4,16 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../core/theme/AppColors.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
+
+  @override
+  SignUpState createState() => SignUpState();
+}
+
+class SignUpState extends State<SignUpScreen> {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

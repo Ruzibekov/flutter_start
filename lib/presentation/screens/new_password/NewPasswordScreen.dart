@@ -1,12 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../core/theme/AppColors.dart';
 
-class NewPasswordScreen extends StatelessWidget {
+class NewPasswordScreen extends StatefulWidget {
   const NewPasswordScreen({super.key});
 
+  @override
+  NewPasswordState createState() => NewPasswordState();
+}
+
+class NewPasswordState extends State<NewPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,6 +122,7 @@ class NewPasswordScreen extends StatelessWidget {
                     onPressed: () {},
                     style: OutlinedButton.styleFrom(
                       side: BorderSide(color: AppColors.primary, width: 2),
+                      padding: EdgeInsets.symmetric(vertical: 12),
                     ),
                     child: Text(
                       "Sign Up",

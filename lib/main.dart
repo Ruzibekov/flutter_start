@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_start/presentation/screens/new_password/NewPasswordScreen.dart';
+import 'package:flutter_start/presentation/screens/sign_up/SignUpScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "My second app",
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: NewPasswordScreen(),
+      home: SignUpScreen(),
     );
   }
 }

@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  HomeState createState() => HomeState();
+}
+
+class HomeState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,10 +18,10 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       body: Center(
-          child: Text(
-              "BODY TEXT",
-              style: TextStyle(color: Colors.black, fontSize: 16)
-          )
+        child: Text(
+          "BODY TEXT",
+          style: TextStyle(color: Colors.black, fontSize: 16),
+        ),
       ),
     );
   }
