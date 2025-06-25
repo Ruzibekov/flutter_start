@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../core/theme/AppColors.dart';
+import '../otp_verification/OTPVerificationScreen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -12,10 +13,18 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class SignUpState extends State<SignUpScreen> {
-
+  bool isChecked = false;
+  String emailField = "";
+  double btnSignUpOpacity = 1;
 
   @override
   Widget build(BuildContext context) {
+    if (isChecked && emailField.isNotEmpty) {
+      btnSignUpOpacity = 1;
+    } else {
+      btnSignUpOpacity = 0.5;
+    }
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -52,6 +61,11 @@ class SignUpState extends State<SignUpScreen> {
               SizedBox(height: 42),
 
               TextField(
+                onChanged: (value) {
+                  setState(() {
+                    emailField = value;
+                  });
+                },
                 decoration: InputDecoration(
                   hintText: "Email ID",
                   hintStyle: TextStyle(
@@ -95,8 +109,12 @@ class SignUpState extends State<SignUpScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Checkbox(
-                      value: false,
-                      onChanged: (bool? value) {},
+                      value: isChecked,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          isChecked = value ?? false;
+                        });
+                      },
                       activeColor: AppColors.primary,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(3),
@@ -130,11 +148,17 @@ class SignUpState extends State<SignUpScreen> {
                 child: SizedBox(
                   width: double.infinity,
                   child: TextButton(
-                    onPressed: () {
-                      print("Refresh button pressed");
-                    },
+                    onPressed: isChecked ? () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => OTPVerificationScreen())
+                      );
+                    } : null,
                     style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: AppColors.primary, width: 2),
+                      side: BorderSide(
+                        color: AppColors.primary.withOpacity(btnSignUpOpacity),
+                        width: 2,
+                      ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(27),
                       ),
@@ -149,7 +173,7 @@ class SignUpState extends State<SignUpScreen> {
                         fontFamily: "Poppins",
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: AppColors.primary,
+                        color: AppColors.primary.withOpacity(btnSignUpOpacity),
                       ),
                     ),
                   ),
