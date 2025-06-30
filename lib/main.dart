@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_start/presentation/screens/sign_up/SignUpScreen.dart';
+import 'package:flutter_start/presentation/screens/splash/SplashScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "My second app",
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: SignUpScreen(),
+      home: SplashScreen(),
     );
   }
 }
