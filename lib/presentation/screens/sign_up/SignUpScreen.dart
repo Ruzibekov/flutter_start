@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_start/core/constant/AppConstant.dart';
 import 'package:flutter_start/presentation/screens/sign_up/components/OutlinedButton.dart';
 import 'package:flutter_start/presentation/screens/sign_up/components/SignUpTextField.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../core/theme/AppColors.dart';
 import '../otp_verification/OTPVerificationScreen.dart';
@@ -90,13 +94,50 @@ class SignUpState extends State<SignUpScreen> {
                     SizedBox(width: 10),
 
                     Expanded(
-                      child: Text(
-                        "By continuing, I confirm that I have read the Terms of Use and Privacy Policy",
-                        style: TextStyle(
-                          fontFamily: "Poppins",
-                          fontSize: 14,
-                          fontWeight: FontWeight.normal,
-                          color: AppColors.hint,
+                      child: RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text:
+                                  "By continuing, I confirm that I have read the ",
+                              style: TextStyle(
+                                color: AppColors.hint,
+                                fontFamily: "Poppins",
+                              ),
+                            ),
+
+                            TextSpan(
+                              text: "Terms of Use ",
+                              style: TextStyle(
+                                color: AppColors.primary,
+                                fontFamily: "Poppins",
+                              ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  launchUrl(Uri.parse(AppConstant.termsLink));
+                                },
+                            ),
+
+                            TextSpan(
+                              text: "and ",
+                              style: TextStyle(
+                                color: AppColors.hint,
+                                fontFamily: "Poppins",
+                              ),
+                            ),
+
+                            TextSpan(
+                              text: "Privacy Policy",
+                              style: TextStyle(
+                                color: AppColors.primary,
+                                fontFamily: "Poppins",
+                              ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  launchUrlString(AppConstant.privacyLink);
+                                },
+                            ),
+                          ],
                         ),
                       ),
                     ),
