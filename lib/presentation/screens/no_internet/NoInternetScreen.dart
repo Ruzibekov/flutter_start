@@ -1,8 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_start/extension/Extension.dart';
+import 'package:flutter_start/presentation/screens/sign_up/SignUpScreen.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../core/theme/AppColors.dart';
+import '../sign_up/components/PrimaryButton.dart';
 
 class NoInternetScreen extends StatelessWidget {
   const NoInternetScreen({super.key});
@@ -49,37 +51,26 @@ class NoInternetScreen extends StatelessWidget {
 
               SizedBox(height: 170),
 
-              Padding(
+              PrimaryButton(
+                onClick: () {
+                  onRefreshClick(context);
+                },
+                text: "Refresh",
                 padding: EdgeInsets.symmetric(horizontal: 67),
-                child: SizedBox(
-                  width: double.infinity,
-                  height: 44,
-                  child: TextButton(
-                    onPressed: () {
-                      print("Refresh button pressed");
-                    },
-                    style: TextButton.styleFrom(
-                      backgroundColor: AppColors.primary,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(27),
-                      ),
-                    ),
-                    child: Text(
-                      "Refresh",
-                      style: TextStyle(
-                        fontFamily: 'Poppins',
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
               ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  void onRefreshClick(BuildContext context) async {
+    if (await isInternetAvailable()) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const SignUpScreen()),
+      );
+    }
   }
 }

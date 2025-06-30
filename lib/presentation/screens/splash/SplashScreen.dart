@@ -1,8 +1,10 @@
-import 'dart:async';
+import 'dart:async' show Future, Timer;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_start/presentation/screens/no_internet/NoInternetScreen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../extension/Extension.dart';
 import '../sign_up/SignUpScreen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -14,20 +16,15 @@ class SplashScreen extends StatefulWidget {
 
 class SplashState extends State<SplashScreen> {
   double size = 100.0;
-  late Timer _timer;
+  late Timer timer;
 
   @override
   void initState() {
     super.initState();
 
-    Future.delayed(Duration(seconds: 1), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const SignUpScreen()),
-      );
-    });
+    Future.delayed(Duration(seconds: 1)).then((_) => openNextScreen());
 
-    _timer = Timer.periodic(Duration(milliseconds: 250), (_) {
+    timer = Timer.periodic(Duration(milliseconds: 250), (_) {
       setState(() {
         size = size == 100.0 ? 200.0 : 100.0;
       });
@@ -36,7 +33,7 @@ class SplashState extends State<SplashScreen> {
 
   @override
   void dispose() {
-    _timer.cancel();
+    timer.cancel();
     super.dispose();
   }
 
@@ -54,6 +51,17 @@ class SplashState extends State<SplashScreen> {
             fit: BoxFit.contain,
           ),
         ),
+      ),
+    );
+  }
+
+  void openNextScreen() async {
+    bool connected = await isInternetAvailable();
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) =>
+            connected ? const SignUpScreen() : const NoInternetScreen(),
       ),
     );
   }
