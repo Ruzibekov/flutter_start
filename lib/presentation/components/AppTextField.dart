@@ -1,15 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
-import '../../../../core/theme/AppColors.dart';
+import '../../core/theme/AppColors.dart';
 
-class SignUpTextField extends StatelessWidget {
+class AppTextField extends StatelessWidget {
   final Function(String) onChanged;
+  final TextInputType inputType;
+  final bool obscureText;
+  final String hintText;
+  final Widget? prefixIcon;
 
-  const SignUpTextField({
+  const AppTextField({
     super.key,
     required this.onChanged,
+    this.hintText = "",
+    this.inputType = TextInputType.text,
+    this.obscureText = false,
+    this.prefixIcon
   });
 
   @override
@@ -17,7 +24,7 @@ class SignUpTextField extends StatelessWidget {
     return TextField(
       onChanged: onChanged,
       decoration: InputDecoration(
-        hintText: "Email ID",
+        hintText: hintText,
         hintStyle: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.normal,
@@ -39,7 +46,7 @@ class SignUpTextField extends StatelessWidget {
             right: 8,
             top: 16,
           ),
-          child: SvgPicture.asset("assets/icons/ic_email.svg"),
+          child: prefixIcon,
         ),
       ),
       style: TextStyle(
@@ -48,7 +55,8 @@ class SignUpTextField extends StatelessWidget {
         fontFamily: "Poppins",
         color: Colors.black,
       ),
-      keyboardType: TextInputType.emailAddress,
+      keyboardType: inputType,
+      obscureText: obscureText,
     );
   }
 }

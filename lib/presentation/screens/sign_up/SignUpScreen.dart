@@ -3,7 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_start/core/constant/AppConstant.dart';
 import 'package:flutter_start/presentation/screens/sign_up/components/OutlinedButton.dart';
-import 'package:flutter_start/presentation/screens/sign_up/components/SignUpTextField.dart';
+import 'package:flutter_start/presentation/components/AppTextField.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -60,12 +60,15 @@ class SignUpState extends State<SignUpScreen> {
 
               SizedBox(height: 42),
 
-              SignUpTextField(
+              AppTextField(
                 onChanged: (value) {
                   setState(() {
                     emailField = value;
                   });
                 },
+                hintText: "Email ID",
+                inputType: TextInputType.emailAddress,
+                prefixIcon: SvgPicture.asset("assets/icons/ic_email.svg"),
               ),
 
               SizedBox(height: 48),
